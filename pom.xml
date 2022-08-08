@@ -6,7 +6,7 @@
 
     <groupId>fwoostybots.com</groupId>
     <artifactId>XOSurvivalCore</artifactId>
-    <version>1.0</version>
+    <version>0.1</version>
     <packaging>jar</packaging>
 
     <name>XOSurvivalCore</name>

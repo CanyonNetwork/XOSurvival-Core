@@ -11,3 +11,6 @@ commands:
   gui:
     description: Open a gui
     usage: /<command>
+  wild:
+    description: Go to the wilderness
+    usage: /<command>

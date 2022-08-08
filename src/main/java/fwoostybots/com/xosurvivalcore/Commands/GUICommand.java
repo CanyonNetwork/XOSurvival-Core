@@ -11,19 +11,13 @@ import fwoostybots.com.xosurvivalcore.Main;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.command.*;
-import org.bukkit.entity.HumanEntity;
 import org.bukkit.entity.Player;
 
-public class GUICommand implements TabExecutor {
+public class GUICommand implements CommandExecutor  {
     private Main main;
 
     public GUICommand(Main main) {
         this.main = main;
-    }
-
-    @Override
-    public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
-        return null;
     }
 
     @Override
@@ -41,7 +35,7 @@ public class GUICommand implements TabExecutor {
 
             // GUI open event
             gui.setOpenGuiAction(event -> {
-                // Handle your open action
+                player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_HARP, 0.5F, 1.5F);
             });
 
             // GUI click event
@@ -53,7 +47,7 @@ public class GUICommand implements TabExecutor {
 
             // GUI close event
             gui.setCloseGuiAction(event -> {
-                player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_HARP, 0.7F, 1.5F);
+                player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_PLING, 0.5F, 1.5F);
             });
 
             // Adding items and opening the GUI
