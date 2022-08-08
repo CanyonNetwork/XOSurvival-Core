@@ -1,0 +1,13 @@
+name: XOSurvivalCore
+version: '${project.version}'
+main: fwoostybots.com.xosurvivalcore.Main
+api-version: 1.18
+authors: [ Someone, FroostySnoowman ]
+description: XOSurvival Core Plugin
+commands:
+  god:
+    description: Become invunerable
+    usage: /<command>
+  gui:
+    description: Open a gui
+    usage: /<command>

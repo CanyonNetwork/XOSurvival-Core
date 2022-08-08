@@ -1,0 +1,28 @@
+########################################################
+## GLOBAL CONFIG
+########################################################
+
+# Set the prefix
+prefix-message: "<bold><gold>SERVER</gold> <dark_gray>>></dark_gray></bold>"
+
+non-player-message: "<red>You need to be a player to execute this command.</red>"
+
+invalid-player-message: "<gradient:#FF0000:#FF3DC5>Invalid player!</gradient>"
+
+no-permission-message: "<gradient:#FF0000:#FF3DC5>You don't have the \"<permission>\" permission to use this command!</gradient>"
+
+########################################################
+## GOD COMMAND
+########################################################
+
+god-enabled-message: "<gradient:#00FFEC:#FF00FB>Your god mode has been enabled!</gradient>"
+god-disabled-message: "<gradient:#00FFEC:#FF00FB>Your god mode has been disabled!</gradient>"
+
+god-enabled-other-message: "<gradient:#00FFEC:#FF00FB>You enabled god mode for <player>!</gradient>"
+god-disabled-other-message: "<gradient:#00FFEC:#FF00FB>You disabled god mode for <player>!</gradient>"
+
+########################################################
+## GUI COMMAND
+########################################################
+
+test-message: "<gradient:#00FFEC:#FF00FB>Testing click events.</gradient>"
