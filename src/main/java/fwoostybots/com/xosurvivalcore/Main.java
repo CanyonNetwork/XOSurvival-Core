@@ -10,6 +10,8 @@ public final class Main extends JavaPlugin {
 
     @Override
     public void onEnable() {
+        this.getServer().getPluginManager().registerEvents(new JoinEvent(), this);
+
         getLogger().info("XOSurvival-Core plugin has enabled.");
 
         getCommand("god").setExecutor(new GodCommand(this));
