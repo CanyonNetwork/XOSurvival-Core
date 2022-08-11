@@ -28,6 +28,9 @@ public class WarpCommand implements CommandExecutor  {
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         if (sender instanceof Player) {
 
+            // Prefix message
+            String prefix_message = main.getConfig().getString("prefix-message");
+
             // Add the sender to the player attribute
             Player player = (Player) sender;
 
@@ -48,7 +51,7 @@ public class WarpCommand implements CommandExecutor  {
                 Location loc = new Location(Bukkit.getWorld("world"), 30.5, 162, 0.5, -90, 0);
                 player.teleport(loc);
                 String warp_message = main.getConfig().getString("warp-message");
-                player.sendMessage(MiniMessage.miniMessage().deserialize(warp_message, Placeholder.component("location", Component.text("the overworld"))));
+                player.sendMessage(MiniMessage.miniMessage().deserialize(prefix_message + ' ' + warp_message, Placeholder.component("location", Component.text("the overworld"))));
             });
 
             GuiItem spawnItem = ItemBuilder.from(Material.MAP).asGuiItem(event -> {
@@ -56,7 +59,7 @@ public class WarpCommand implements CommandExecutor  {
                 Location loc = new Location(Bukkit.getWorld("spawn"), 0.5, 100, 0.5, 0, 0);
                 player.teleport(loc);
                 String warp_message = main.getConfig().getString("warp-message");
-                player.sendMessage(MiniMessage.miniMessage().deserialize(warp_message, Placeholder.component("location", Component.text("spawn"))));
+                player.sendMessage(MiniMessage.miniMessage().deserialize(prefix_message + ' ' + warp_message, Placeholder.component("location", Component.text("spawn"))));
             });
 
             GuiItem endItem = ItemBuilder.from(Material.MAP).asGuiItem(event -> {
@@ -64,13 +67,13 @@ public class WarpCommand implements CommandExecutor  {
                 Location loc = new Location(Bukkit.getWorld("world_the_end"), 100.5, 49, 0.5, 90, 0);
                 player.teleport(loc);
                 String warp_message = main.getConfig().getString("warp-message");
-                player.sendMessage(MiniMessage.miniMessage().deserialize(warp_message, Placeholder.component("location", Component.text("the end"))));
+                player.sendMessage(MiniMessage.miniMessage().deserialize(prefix_message + ' ' + warp_message, Placeholder.component("location", Component.text("the end"))));
             });
 
             GuiItem netherItem = ItemBuilder.from(Material.MAP).asGuiItem(event -> {
                 event.setCancelled(true);
                 String warp_message = main.getConfig().getString("warp-message");
-                player.sendMessage(MiniMessage.miniMessage().deserialize(warp_message, Placeholder.component("location", Component.text("the nether"))));
+                player.sendMessage(MiniMessage.miniMessage().deserialize(prefix_message + ' ' + warp_message, Placeholder.component("location", Component.text("the nether"))));
             });
 
             // GUI close event

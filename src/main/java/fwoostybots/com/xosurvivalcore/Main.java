@@ -10,7 +10,7 @@ public final class Main extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        //this.getServer().getPluginManager().registerEvents(new JoinEvent(), this);
+        this.getServer().getPluginManager().registerEvents(new fwoostybots.com.xosurvivalcore.JoinEvent(this), this);
 
         getLogger().info("XOSurvival-Core plugin has enabled.");
 

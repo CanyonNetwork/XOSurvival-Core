@@ -12,6 +12,13 @@ invalid-player-message: "<gradient:#FF0000:#FF3DC5>Invalid player!</gradient>"
 no-permission-message: "<gradient:#FF0000:#FF3DC5>You don't have the \"<permission>\" permission to use this command!</gradient>"
 
 ########################################################
+##            RESOURCE PACK CONFIG          ###
+########################################################
+
+failed-resource-pack-message: "<gradient:#FF0000:#FF3DC5>Failed to download the resource pack. Your experience on this server will be limited.</gradient>"
+declined-resource-pack-message: "<gradient:#FF0000:#FF3DC5>You declined the resource pack! Your experience on this server will be limited.</gradient>"
+
+########################################################
 ##            WILD COMMAND CONFIG /WILD              ###
 ########################################################
 
@@ -47,4 +54,4 @@ god-disabled-other-message: "<gradient:#00FFEC:#FF00FB>You disabled god mode for
 ## WARP COMMAND
 ########################################################
 
-warp-message: "<gold><bold>SERVER<reset> <dark_gray>>></dark_gray> <gradient:#00FFEC:#FF00FB>You've been warped to <location>!</gradient>"
+warp-message: "<gradient:#00FFEC:#FF00FB>You've been warped to <location>!</gradient>"
