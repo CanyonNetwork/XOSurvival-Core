@@ -15,10 +15,10 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.List;
 
-public class GUICommand implements CommandExecutor  {
+public class WildGUI implements CommandExecutor  {
     private Main main;
 
-    public GUICommand(Main main) {
+    public WildGUI(Main main) {
         this.main = main;
     }
 
@@ -31,7 +31,7 @@ public class GUICommand implements CommandExecutor  {
 
             // Creating the GUI
             Gui gui = Gui.gui()
-                    .title(Component.text("§f七七七七七七七七ㇺ"))
+                    .title(Component.text("§f七七七七七七七七三"))
                     .rows(6)
                     .create();
 

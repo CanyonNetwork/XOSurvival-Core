@@ -44,7 +44,7 @@ god-enabled-other-message: "<gradient:#00FFEC:#FF00FB>You enabled god mode for <
 god-disabled-other-message: "<gradient:#00FFEC:#FF00FB>You disabled god mode for <player>!</gradient>"
 
 ########################################################
-## GUI COMMAND
+## WARP COMMAND
 ########################################################
 
-test-message: "<gradient:#00FFEC:#FF00FB>Testing click events.</gradient>"
+warp-message: "<gold><bold>SERVER<reset> <dark_gray>>></dark_gray> <gradient:#00FFEC:#FF00FB>You've been warped to <location>!</gradient>"

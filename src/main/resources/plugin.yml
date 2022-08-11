@@ -8,9 +8,12 @@ commands:
   god:
     description: Become invunerable
     usage: /<command>
-  gui:
+  warp:
     description: Open a gui
     usage: /<command>
   wild:
     description: Go to the wilderness
+    usage: /<command>
+  wildgui:
+    description: GUI stuff
     usage: /<command>

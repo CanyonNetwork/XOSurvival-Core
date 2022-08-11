@@ -10,12 +10,13 @@ public final class Main extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        this.getServer().getPluginManager().registerEvents(new JoinEvent(), this);
+        //this.getServer().getPluginManager().registerEvents(new JoinEvent(), this);
 
         getLogger().info("XOSurvival-Core plugin has enabled.");
 
         getCommand("god").setExecutor(new GodCommand(this));
-        getCommand("gui").setExecutor(new GUICommand(this));
+        getCommand("warp").setExecutor(new WarpCommand(this));
+        getCommand("wildgui").setExecutor(new WildGUI(this));
         getCommand("wild").setExecutor(new WildCommand(this));
 
         Teleport teleUtil = new Teleport(this);

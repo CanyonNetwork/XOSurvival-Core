@@ -9,12 +9,14 @@ import org.bukkit.event.player.PlayerResourcePackStatusEvent;
 
 public class JoinEvent implements Listener {
 
+    // Give the player the resource pack prompt
     @EventHandler
     public void onJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
         player.setResourcePack("https://www.dropbox.com/s/rieh4n8tvkjh1gw/dd.zip?dl=1");
     }
 
+    // Resource Pack Status
     @EventHandler
     public void onResourcePackStatus(PlayerResourcePackStatusEvent event) {
         Player player = event.getPlayer();
