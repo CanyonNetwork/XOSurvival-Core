@@ -1,6 +1,7 @@
 package fwoostybots.com.xosurvivalcore;
 
 import fwoostybots.com.xosurvivalcore.Commands.*;
+import fwoostybots.com.xosurvivalcore.Managers.ResourcePackManager;
 import fwoostybots.com.xosurvivalcore.Utilities.*;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -26,11 +27,15 @@ public final class Main extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        this.getServer().getPluginManager().registerEvents(new fwoostybots.com.xosurvivalcore.JoinEvent(this), this);
+
+        // Adds the ResourcePackManager manager to be public
+        ResourcePackManager resourcepackManager = new ResourcePackManager();
+
+        this.getServer().getPluginManager().registerEvents(new fwoostybots.com.xosurvivalcore.JoinEvent(this, resourcepackManager), this);
 
         getLogger().info("XOSurvival-Core plugin has enabled.");
 
-        getCommand("god").setExecutor(new GodCommand(this));
+        getCommand("god").setExecutor(new GodCommand(this, resourcepackManager));
         getCommand("warp").setExecutor(new WarpCommand(this));
         getCommand("wildgui").setExecutor(new WildGUI(this));
         getCommand("wild").setExecutor(new WildCommand(this));

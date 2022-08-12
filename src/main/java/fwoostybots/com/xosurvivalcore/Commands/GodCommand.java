@@ -1,7 +1,9 @@
 package fwoostybots.com.xosurvivalcore.Commands;
 
 import java.util.List;
+import java.util.Map;
 
+import fwoostybots.com.xosurvivalcore.Managers.ResourcePackManager;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import fwoostybots.com.xosurvivalcore.Main;
@@ -12,9 +14,11 @@ import org.bukkit.entity.Player;
 
 public class GodCommand implements TabExecutor {
     private Main main;
+    private final ResourcePackManager resourcepackManager;
 
-    public GodCommand(Main main) {
+    public GodCommand(Main main, ResourcePackManager resourcepackManager) {
         this.main = main;
+        this.resourcepackManager = resourcepackManager;
     }
 
     @Override
@@ -56,8 +60,10 @@ public class GodCommand implements TabExecutor {
                 } catch (Exception e) {
                     if (player.isInvulnerable()) {
                         player.setInvulnerable(false);
+                        boolean test = resourcepackManager.getStatus(player.getUniqueId());
                         String god_disabled_message = main.getConfig().getString("god-disabled-message");
                         sender.sendMessage(MiniMessage.miniMessage().deserialize(prefix_message + ' ' + god_disabled_message));
+                        sender.sendMessage(MiniMessage.miniMessage().deserialize(String.valueOf(test)));
                     } else {
                         player.setInvulnerable(true);
                         String god_enabled_message = main.getConfig().getString("god-enabled-message");
