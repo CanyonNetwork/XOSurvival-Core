@@ -4,6 +4,7 @@ main: fwoostybots.com.xosurvivalcore.Main
 api-version: 1.18
 authors: [ Someone, FroostySnoowman ]
 description: XOSurvival Core Plugin
+depend: [Vault]
 commands:
   god:
     description: Become invunerable

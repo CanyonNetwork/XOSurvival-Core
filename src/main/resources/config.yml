@@ -12,8 +12,10 @@ invalid-player-message: "<gradient:#FF0000:#FF3DC5>Invalid player!</gradient>"
 no-permission-message: "<gradient:#FF0000:#FF3DC5>You don't have the \"<permission>\" permission to use this command!</gradient>"
 
 ########################################################
-##            RESOURCE PACK CONFIG          ###
+##            JOIN EVENT CONFIG          ###
 ########################################################
+
+join-message: "&8[&a+&8] &r<prefix> <name>"
 
 failed-resource-pack-message: "<gradient:#FF0000:#FF3DC5>Failed to download the resource pack. Your experience on this server will be limited.</gradient>"
 declined-resource-pack-message: "<gradient:#FF0000:#FF3DC5>You declined the resource pack! Your experience on this server will be limited.</gradient>"
