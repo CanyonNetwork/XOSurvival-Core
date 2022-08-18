@@ -32,14 +32,15 @@ public class JoinEvent implements Listener {
     // resourcePackStatus map
     Map<UUID, Boolean> resourcePackStatus = new HashMap<>();
 
-    // Give the player the resource pack prompt
-    @EventHandler()
+    // Join event
+    @EventHandler(priority = EventPriority.LOWEST)
     public void onJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
         String join_message = main.getConfig().getString("join-message");
         for (Player e : Bukkit.getOnlinePlayers()) {
             e.sendMessage(MiniMessage.miniMessage().deserialize(join_message, Placeholder.component("player", player.displayName())));
         }
+        // Give the player the resource pack prompt
         player.setResourcePack("https://www.dropbox.com/s/rieh4n8tvkjh1gw/dd.zip?dl=1");
     }
 
