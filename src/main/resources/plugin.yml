@@ -21,4 +21,4 @@ commands:
   resourcepack:
     description: GUI stuff
     usage: /<command>
-    aliases: [rp, rsp]
+    aliases: [rp]

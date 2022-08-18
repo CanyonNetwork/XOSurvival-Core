@@ -6,17 +6,14 @@ import fwoostybots.com.xosurvivalcore.Utilities.*;
 import org.bukkit.plugin.java.JavaPlugin;
 
 // Vault API Stuff
-import java.util.logging.Logger;
-
 import net.milkbowl.vault.chat.Chat;
+import net.milkbowl.vault.economy.Economy;
 import net.milkbowl.vault.permission.Permission;
 
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
 import org.bukkit.plugin.RegisteredServiceProvider;
 
 public final class Main extends JavaPlugin {
+    private static Economy econ = null;
     private static Permission perms = null;
     private static Chat chat = null;
 
@@ -55,27 +52,6 @@ public final class Main extends JavaPlugin {
         RegisteredServiceProvider<Permission> rsp = getServer().getServicesManager().getRegistration(Permission.class);
         perms = rsp.getProvider();
         return perms != null;
-    }
-
-    public boolean onCommand(CommandSender sender, Command command, String commandLabel, String[] args) {
-        if(!(sender instanceof Player)) {
-            getLogger().info("Only players are supported for this Example Plugin, but you should not do this!!!");
-            return true;
-        }
-
-        Player player = (Player) sender;
-
-        if(command.getLabel().equals("test-permission")) {
-            // Lets test if user has the node "example.plugin.awesome" to determine if they are awesome or just suck
-            if(perms.has(player, "example.plugin.awesome")) {
-                sender.sendMessage("You are awesome!");
-            } else {
-                sender.sendMessage("You suck!");
-            }
-            return true;
-        } else {
-            return false;
-        }
     }
 
     public static Permission getPermissions() {

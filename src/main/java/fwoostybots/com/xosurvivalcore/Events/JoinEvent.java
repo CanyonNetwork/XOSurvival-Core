@@ -33,7 +33,7 @@ public class JoinEvent implements Listener {
     Map<UUID, Boolean> resourcePackStatus = new HashMap<>();
 
     // Give the player the resource pack prompt
-    @EventHandler(priority = EventPriority.HIGHEST)
+    @EventHandler()
     public void onJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
         String join_message = main.getConfig().getString("join-message");
