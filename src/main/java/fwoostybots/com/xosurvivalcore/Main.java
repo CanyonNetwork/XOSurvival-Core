@@ -3,6 +3,13 @@ package fwoostybots.com.xosurvivalcore;
 import fwoostybots.com.xosurvivalcore.Commands.*;
 import fwoostybots.com.xosurvivalcore.Managers.ResourcePackManager;
 import fwoostybots.com.xosurvivalcore.Utilities.*;
+import net.kyori.adventure.text.minimessage.MiniMessage;
+import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
+import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
+import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
 // Vault API Stuff

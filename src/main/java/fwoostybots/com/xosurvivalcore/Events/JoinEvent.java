@@ -17,6 +17,7 @@ import org.bukkit.event.player.PlayerResourcePackStatusEvent;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
+import java.util.concurrent.TimeUnit;
 
 public class JoinEvent implements Listener {
 
@@ -33,15 +34,13 @@ public class JoinEvent implements Listener {
     Map<UUID, Boolean> resourcePackStatus = new HashMap<>();
 
     // Join event
-    @EventHandler(priority = EventPriority.LOWEST)
+    @EventHandler(priority = EventPriority.HIGHEST)
     public void onJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
         String join_message = main.getConfig().getString("join-message");
         for (Player e : Bukkit.getOnlinePlayers()) {
             e.sendMessage(MiniMessage.miniMessage().deserialize(join_message, Placeholder.component("player", player.displayName())));
         }
-        // Give the player the resource pack prompt
-        player.setResourcePack("https://www.dropbox.com/s/rieh4n8tvkjh1gw/dd.zip?dl=1");
     }
 
     // Resource Pack Status
