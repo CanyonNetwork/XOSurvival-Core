@@ -15,7 +15,7 @@ no-permission-message: "<gradient:#FF0000:#FF3DC5>You don't have the \"<permissi
 ##            JOIN EVENT CONFIG          ###
 ########################################################
 
-join-message: "&8[&a+&8] &r<prefix> <name>"
+join-message: "<dark_gray>[<green>+</green>]</dark_gray> <reset><player>"
 
 failed-resource-pack-message: "<gradient:#FF0000:#FF3DC5>Failed to download the resource pack. Your experience on this server will be limited.</gradient>"
 declined-resource-pack-message: "<gradient:#FF0000:#FF3DC5>You declined the resource pack! Your experience on this server will be limited.</gradient>"
@@ -57,3 +57,9 @@ god-disabled-other-message: "<gradient:#00FFEC:#FF00FB>You disabled god mode for
 ########################################################
 
 warp-message: "<gradient:#00FFEC:#FF00FB>You've been warped to <location>!</gradient>"
+
+########################################################
+## RESOURCE PACK COMMAND
+########################################################
+
+resource-pack-status-message: "<gradient:#FF0000:#FF3DC5><player>'s resource pack is already enabled!</gradient>"

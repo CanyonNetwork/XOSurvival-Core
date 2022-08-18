@@ -1,11 +1,15 @@
-package fwoostybots.com.xosurvivalcore;
+package fwoostybots.com.xosurvivalcore.Events;
 
+import fwoostybots.com.xosurvivalcore.Main;
 import fwoostybots.com.xosurvivalcore.Managers.ResourcePackManager;
+import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
+import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerResourcePackStatusEvent;
@@ -29,12 +33,12 @@ public class JoinEvent implements Listener {
     Map<UUID, Boolean> resourcePackStatus = new HashMap<>();
 
     // Give the player the resource pack prompt
-    @EventHandler
+    @EventHandler(priority = EventPriority.HIGHEST)
     public void onJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
         String join_message = main.getConfig().getString("join-message");
         for (Player e : Bukkit.getOnlinePlayers()) {
-            e.sendMessage(ChatColor.translateAlternateColorCodes('&', join_message).replaceAll("<prefix>", "Prefix").replaceAll("<name>", e.getPlayer().getName()));
+            e.sendMessage(MiniMessage.miniMessage().deserialize(join_message, Placeholder.component("player", player.displayName())));
         }
         player.setResourcePack("https://www.dropbox.com/s/rieh4n8tvkjh1gw/dd.zip?dl=1");
     }

@@ -9,8 +9,6 @@ import org.bukkit.plugin.java.JavaPlugin;
 import java.util.logging.Logger;
 
 import net.milkbowl.vault.chat.Chat;
-import net.milkbowl.vault.economy.Economy;
-import net.milkbowl.vault.economy.EconomyResponse;
 import net.milkbowl.vault.permission.Permission;
 
 import org.bukkit.command.Command;
@@ -19,9 +17,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.RegisteredServiceProvider;
 
 public final class Main extends JavaPlugin {
-
-    private static final Logger log = Logger.getLogger("Minecraft");
-    private static Economy econ = null;
     private static Permission perms = null;
     private static Chat chat = null;
 
@@ -31,11 +26,12 @@ public final class Main extends JavaPlugin {
         // Adds the ResourcePackManager manager to be public
         ResourcePackManager resourcepackManager = new ResourcePackManager();
 
-        this.getServer().getPluginManager().registerEvents(new fwoostybots.com.xosurvivalcore.JoinEvent(this, resourcepackManager), this);
+        this.getServer().getPluginManager().registerEvents(new fwoostybots.com.xosurvivalcore.Events.JoinEvent(this, resourcepackManager), this);
 
         getLogger().info("XOSurvival-Core plugin has enabled.");
 
         getCommand("god").setExecutor(new GodCommand(this, resourcepackManager));
+        getCommand("resourcepack").setExecutor(new ResourcePackCommand(this, resourcepackManager));
         getCommand("warp").setExecutor(new WarpCommand(this));
         getCommand("wildgui").setExecutor(new WildGUI(this));
         getCommand("wild").setExecutor(new WildCommand(this));
@@ -63,23 +59,13 @@ public final class Main extends JavaPlugin {
 
     public boolean onCommand(CommandSender sender, Command command, String commandLabel, String[] args) {
         if(!(sender instanceof Player)) {
-            log.info("Only players are supported for this Example Plugin, but you should not do this!!!");
+            getLogger().info("Only players are supported for this Example Plugin, but you should not do this!!!");
             return true;
         }
 
         Player player = (Player) sender;
 
-        if(command.getLabel().equals("test-economy")) {
-            // Lets give the player 1.05 currency (note that SOME economic plugins require rounding!)
-            sender.sendMessage(String.format("You have %s", econ.format(econ.getBalance(player.getName()))));
-            EconomyResponse r = econ.depositPlayer(player, 1.05);
-            if(r.transactionSuccess()) {
-                sender.sendMessage(String.format("You were given %s and now have %s", econ.format(r.amount), econ.format(r.balance)));
-            } else {
-                sender.sendMessage(String.format("An error occured: %s", r.errorMessage));
-            }
-            return true;
-        } else if(command.getLabel().equals("test-permission")) {
+        if(command.getLabel().equals("test-permission")) {
             // Lets test if user has the node "example.plugin.awesome" to determine if they are awesome or just suck
             if(perms.has(player, "example.plugin.awesome")) {
                 sender.sendMessage("You are awesome!");

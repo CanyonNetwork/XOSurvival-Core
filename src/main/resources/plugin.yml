@@ -18,3 +18,7 @@ commands:
   wildgui:
     description: GUI stuff
     usage: /<command>
+  resourcepack:
+    description: GUI stuff
+    usage: /<command>
+    aliases: [rp, rsp]

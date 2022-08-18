@@ -60,10 +60,8 @@ public class GodCommand implements TabExecutor {
                 } catch (Exception e) {
                     if (player.isInvulnerable()) {
                         player.setInvulnerable(false);
-                        boolean test = resourcepackManager.getStatus(player.getUniqueId());
                         String god_disabled_message = main.getConfig().getString("god-disabled-message");
                         sender.sendMessage(MiniMessage.miniMessage().deserialize(prefix_message + ' ' + god_disabled_message));
-                        sender.sendMessage(MiniMessage.miniMessage().deserialize(String.valueOf(test)));
                     } else {
                         player.setInvulnerable(true);
                         String god_enabled_message = main.getConfig().getString("god-enabled-message");
