@@ -1,5 +1,8 @@
 # XOSurvivalCore
 
+Adventure:
+https://docs.adventure.kyori.net/
+
 GUI Library:
 https://triumphteam.dev/library/triumph-gui/features
 
