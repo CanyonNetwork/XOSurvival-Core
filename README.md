@@ -1,5 +1,8 @@
 # XOSurvivalCore
 
+API:
+PaperMC version 1.19.2-R0.1-SNAPSHOT
+
 Adventure:
 https://docs.adventure.kyori.net/
 
