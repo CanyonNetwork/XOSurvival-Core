@@ -4,6 +4,7 @@ import fwoostybots.com.xosurvivalcore.Main;
 import fwoostybots.com.xosurvivalcore.Managers.ResourcePackManager;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import net.luckperms.api.model.user.User;
+import net.luckperms.api.query.QueryOptions;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
@@ -53,8 +54,18 @@ public class JoinEvent implements Listener {
                     e.sendMessage(ChatColor.translateAlternateColorCodes('&', join_message.replaceAll("<player>", player.getName()).replaceAll("<prefix>", prefix)));
                 }
             } catch (Exception exception) {
+                Map<Integer, String> inheritedPrefixes = user.getCachedData().getMetaData(QueryOptions.nonContextual()).getPrefixes();
+                String highestWhatever =  inheritedPrefixes.entrySet().stream().filter(entry -> !(entry.getValue() != null)).sorted(Map.Entry.comparingByKey()).findFirst().get().getValue();
                 e.sendMessage(ChatColor.translateAlternateColorCodes('&', join_message.replaceAll("<player>", player.getName()).replaceAll("<prefix>", prefix)));
+                e.sendMessage(String.valueOf(highestWhatever));
+                print(inheritedPrefixes);
             }
+        }
+    }
+
+    public static void print(final Map<?, ?> map) {
+        for (final Map.Entry<?, ?> entry : map.entrySet()) {
+            System.out.println(entry.getKey() + " -> " + entry.getValue());
         }
     }
 
