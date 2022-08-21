@@ -54,18 +54,16 @@ public class JoinEvent implements Listener {
                     e.sendMessage(ChatColor.translateAlternateColorCodes('&', join_message.replaceAll("<player>", player.getName()).replaceAll("<prefix>", prefix)));
                 }
             } catch (Exception exception) {
+                // Get the highest priority prefix
+                Map<Integer, String> inheritedPrefixes2 = user.getCachedData().getMetaData(QueryOptions.nonContextual()).getPrefixes();
+                String highestPrefix =  inheritedPrefixes2.entrySet().stream().filter(entry -> !(entry.getValue() == null)).sorted((o1, o2) -> -o1.getKey().compareTo(o2.getKey())).findFirst().get().getValue();
+                // Get the lowest priority prefix
                 Map<Integer, String> inheritedPrefixes = user.getCachedData().getMetaData(QueryOptions.nonContextual()).getPrefixes();
-                String highestWhatever =  inheritedPrefixes.entrySet().stream().filter(entry -> !(entry.getValue() != null)).sorted(Map.Entry.comparingByKey()).findFirst().get().getValue();
+                String lowestPrefix =  inheritedPrefixes.entrySet().stream().filter(entry -> !(entry.getValue() == null)).sorted(Map.Entry.comparingByKey()).findFirst().get().getValue();
                 e.sendMessage(ChatColor.translateAlternateColorCodes('&', join_message.replaceAll("<player>", player.getName()).replaceAll("<prefix>", prefix)));
-                e.sendMessage(String.valueOf(highestWhatever));
-                print(inheritedPrefixes);
+                e.sendMessage(ChatColor.translateAlternateColorCodes('&', "highest: " + highestPrefix));
+                e.sendMessage(ChatColor.translateAlternateColorCodes('&', "lowest: " + lowestPrefix));
             }
-        }
-    }
-
-    public static void print(final Map<?, ?> map) {
-        for (final Map.Entry<?, ?> entry : map.entrySet()) {
-            System.out.println(entry.getKey() + " -> " + entry.getValue());
         }
     }
 
