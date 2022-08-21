@@ -3,13 +3,8 @@ package fwoostybots.com.xosurvivalcore;
 import fwoostybots.com.xosurvivalcore.Commands.*;
 import fwoostybots.com.xosurvivalcore.Managers.ResourcePackManager;
 import fwoostybots.com.xosurvivalcore.Utilities.*;
-import net.kyori.adventure.text.minimessage.MiniMessage;
-import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
+import net.luckperms.api.LuckPerms;
 import org.bukkit.Bukkit;
-import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.EventPriority;
-import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
 // Vault API Stuff
@@ -19,6 +14,7 @@ import org.bukkit.plugin.RegisteredServiceProvider;
 
 public final class Main extends JavaPlugin {
     private static Chat chat = null;
+    private LuckPerms luckPerms;
 
     @Override
     public void onEnable() {
@@ -26,7 +22,13 @@ public final class Main extends JavaPlugin {
         // Adds the ResourcePackManager manager to be public
         ResourcePackManager resourcepackManager = new ResourcePackManager();
 
-        this.getServer().getPluginManager().registerEvents(new fwoostybots.com.xosurvivalcore.Events.JoinEvent(this, resourcepackManager), this);
+        // Adds luckPerms to be public
+        RegisteredServiceProvider<LuckPerms> provider = Bukkit.getServicesManager().getRegistration(LuckPerms.class);
+        if (provider != null) {
+            this.luckPerms = provider.getProvider();
+        }
+
+        this.getServer().getPluginManager().registerEvents(new fwoostybots.com.xosurvivalcore.Events.JoinEvent(this, resourcepackManager, luckPerms), this);
 
         getLogger().info("XOSurvival-Core plugin has enabled.");
 

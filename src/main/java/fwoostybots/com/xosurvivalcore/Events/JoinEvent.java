@@ -2,9 +2,8 @@ package fwoostybots.com.xosurvivalcore.Events;
 
 import fwoostybots.com.xosurvivalcore.Main;
 import fwoostybots.com.xosurvivalcore.Managers.ResourcePackManager;
-import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
-import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
+import net.luckperms.api.model.user.User;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
@@ -13,21 +12,22 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerResourcePackStatusEvent;
+import net.luckperms.api.LuckPerms;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
-import java.util.concurrent.TimeUnit;
 
 public class JoinEvent implements Listener {
 
     private Main main;
-
     private final ResourcePackManager resourcepackManager;
+    private final LuckPerms luckPerms;
 
-    public JoinEvent(Main main, ResourcePackManager resourcepackManager) {
+    public JoinEvent(Main main, ResourcePackManager resourcepackManager, LuckPerms luckPerms) {
         this.main = main;
         this.resourcepackManager = resourcepackManager;
+        this.luckPerms = luckPerms;
     }
 
     // resourcePackStatus map
@@ -37,9 +37,24 @@ public class JoinEvent implements Listener {
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
+        player.setResourcePack("https://www.dropbox.com/s/rieh4n8tvkjh1gw/dd.zip?dl=1");
         String join_message = main.getConfig().getString("join-message");
+        String resourcepack_join_message = main.getConfig().getString("resourcepack-join-message");
+        User user = luckPerms.getUserManager().getUser(player.getUniqueId());
+        String prefix = user.getCachedData().getMetaData().getPrefix();
         for (Player e : Bukkit.getOnlinePlayers()) {
-            e.sendMessage(MiniMessage.miniMessage().deserialize(join_message, Placeholder.component("player", player.displayName())));
+            try {
+                boolean packstatus = resourcepackManager.getStatus(e.getUniqueId());
+                // Message sent if they have the resource pack enabled
+                if (packstatus) {
+                    e.sendMessage(ChatColor.translateAlternateColorCodes('&', resourcepack_join_message.replaceAll("<player>", player.getName()).replaceAll("<prefix>", prefix)));
+                    // Message sent if they don't have the resource pack enabled
+                } else {
+                    e.sendMessage(ChatColor.translateAlternateColorCodes('&', join_message.replaceAll("<player>", player.getName()).replaceAll("<prefix>", prefix)));
+                }
+            } catch (Exception exception) {
+                e.sendMessage(ChatColor.translateAlternateColorCodes('&', join_message.replaceAll("<player>", player.getName()).replaceAll("<prefix>", prefix)));
+            }
         }
     }
 
