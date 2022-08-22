@@ -1,9 +1,7 @@
 package fwoostybots.com.xosurvivalcore.Commands;
 
 import java.util.List;
-import java.util.Map;
 
-import fwoostybots.com.xosurvivalcore.Managers.ResourcePackManager;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import fwoostybots.com.xosurvivalcore.Main;
@@ -14,11 +12,9 @@ import org.bukkit.entity.Player;
 
 public class GodCommand implements TabExecutor {
     private Main main;
-    private final ResourcePackManager resourcepackManager;
 
-    public GodCommand(Main main, ResourcePackManager resourcepackManager) {
+    public GodCommand(Main main) {
         this.main = main;
-        this.resourcepackManager = resourcepackManager;
     }
 
     @Override
