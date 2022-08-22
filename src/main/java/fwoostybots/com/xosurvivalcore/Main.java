@@ -7,13 +7,9 @@ import net.luckperms.api.LuckPerms;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
-// Vault API Stuff
-import net.milkbowl.vault.chat.Chat;
-
 import org.bukkit.plugin.RegisteredServiceProvider;
 
 public final class Main extends JavaPlugin {
-    private static Chat chat = null;
     private LuckPerms luckPerms;
 
     @Override
@@ -42,18 +38,6 @@ public final class Main extends JavaPlugin {
 
         getConfig().options().copyDefaults();
         saveDefaultConfig();
-
-        setupChat();
-    }
-
-    private boolean setupChat() {
-        RegisteredServiceProvider<Chat> rsp = getServer().getServicesManager().getRegistration(Chat.class);
-        chat = rsp.getProvider();
-        return chat != null;
-    }
-
-    public static Chat getChat() {
-        return chat;
     }
 
     @Override
