@@ -28,7 +28,6 @@ public final class Main extends JavaPlugin {
 
         getLogger().info("XOSurvival-Core plugin has enabled.");
 
-        getCommand("god").setExecutor(new GodCommand(this));
         getCommand("resourcepack").setExecutor(new ResourcePackCommand(this, resourcepackManager));
         getCommand("warp").setExecutor(new WarpCommand(this, resourcepackManager));
         getCommand("wildgui").setExecutor(new WildGUI(this));

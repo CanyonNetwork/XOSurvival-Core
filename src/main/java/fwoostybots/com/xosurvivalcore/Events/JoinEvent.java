@@ -38,7 +38,7 @@ public class JoinEvent implements Listener {
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onJoin(PlayerJoinEvent event) {
         Player player = event.getPlayer();
-        player.setResourcePack("https://www.dropbox.com/s/rieh4n8tvkjh1gw/dd.zip?dl=1");
+        player.setResourcePack("https://www.dropbox.com/s/u3i95jws5j00vua/XOSurvival.zip?dl=1");
         String join_message = main.getConfig().getString("join-message");
         String resourcepack_join_message = main.getConfig().getString("resourcepack-join-message");
         User user = luckPerms.getUserManager().getUser(player.getUniqueId());
