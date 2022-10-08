@@ -25,6 +25,7 @@ public final class Main extends JavaPlugin {
         }
 
         this.getServer().getPluginManager().registerEvents(new fwoostybots.com.xosurvivalcore.Events.JoinEvent(this, resourcepackManager, luckPerms), this);
+        this.getServer().getPluginManager().registerEvents(new fwoostybots.com.xosurvivalcore.Events.ChatEvent(this, resourcepackManager, luckPerms), this);
 
         getLogger().info("XOSurvival-Core plugin has enabled.");
 
