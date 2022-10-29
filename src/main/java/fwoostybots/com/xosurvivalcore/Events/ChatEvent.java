@@ -59,7 +59,6 @@ public class ChatEvent implements Listener {
                     chat_message = chat_message.replace("%%prefix%%", lowestPrefix);
                     chat_message = chat_message.replace("%%player%%", player.getName());
                     chat_message = chat_message.replace("%%message%%", PlainTextComponentSerializer.plainText().serialize(message));
-                    e.sendMessage(ChatColor.translateAlternateColorCodes('&', resourcepack_chat_message));
                     e.sendMessage(ChatColor.translateAlternateColorCodes('&', chat_message));
                 }
             //} catch (Exception exception) {
