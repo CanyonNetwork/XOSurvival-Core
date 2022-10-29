@@ -63,7 +63,7 @@ public class JoinEvent implements Listener {
             }
         }
     }
-
+//test
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onLeave(PlayerJoinEvent event) {
         Player player = event.getPlayer();
