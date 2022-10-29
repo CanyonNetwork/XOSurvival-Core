@@ -12,6 +12,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.player.PlayerResourcePackStatusEvent;
 import net.luckperms.api.LuckPerms;
 
@@ -65,7 +66,7 @@ public class JoinEvent implements Listener {
     }
 //test
     @EventHandler(priority = EventPriority.HIGHEST)
-    public void onLeave(PlayerJoinEvent event) {
+    public void onLeave(PlayerQuitEvent event) {
         Player player = event.getPlayer();
         String leave_message = main.getConfig().getString("leave-message");
         String resourcepack_leave_message = main.getConfig().getString("resourcepack-leave-message");
