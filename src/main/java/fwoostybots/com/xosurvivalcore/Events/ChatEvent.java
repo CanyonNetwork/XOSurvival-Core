@@ -44,7 +44,7 @@ public class ChatEvent implements Listener {
         Map<Integer, String> inheritedPrefixes = user.getCachedData().getMetaData(QueryOptions.nonContextual()).getPrefixes();
         String lowestPrefix =  inheritedPrefixes.entrySet().stream().filter(entry -> !(entry.getValue() == null)).sorted(Map.Entry.comparingByKey()).findFirst().get().getValue();
         for (Player e : Bukkit.getOnlinePlayers()) {
-            //try {
+            try {
                 boolean packstatus = resourcepackManager.getStatus(e.getUniqueId());
                 // Message sent if they have the resource pack enabled
                 if (packstatus) {
@@ -61,9 +61,13 @@ public class ChatEvent implements Listener {
                     chat_message = chat_message.replace("%%message%%", PlainTextComponentSerializer.plainText().serialize(message));
                     e.sendMessage(ChatColor.translateAlternateColorCodes('&', chat_message));
                 }
-            //} catch (Exception exception) {
-            //    e.sendMessage(ChatColor.translateAlternateColorCodes('&', chat_message.replaceAll("<player>", player.getName()).replaceAll("<prefix>", lowestPrefix).replaceAll("<message>", PlainTextComponentSerializer.plainText().serialize(message))));
-            //}
+            } catch (Exception exception) {
+                chat_message = chat_message.replace("%", "%%");
+                chat_message = chat_message.replace("%%prefix%%", lowestPrefix);
+                chat_message = chat_message.replace("%%player%%", player.getName());
+                chat_message = chat_message.replace("%%message%%", PlainTextComponentSerializer.plainText().serialize(message));
+                e.sendMessage(ChatColor.translateAlternateColorCodes('&', chat_message));
+            }
         }
     }
 }

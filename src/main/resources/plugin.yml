@@ -5,20 +5,3 @@ api-version: 1.18
 authors: [ Someone, FroostySnoowman ]
 description: XOSurvival Core Plugin
 depend: [Vault]
-commands:
-  god:
-    description: Become invulnerable
-    usage: /<command>
-  warp:
-    description: Open the Warp GUI
-    usage: /<command>
-  wild:
-    description: Open the Wild GUI
-    usage: /<command>
-  wildc:
-    description: Go to the wilderness
-    usage: /<command>
-  resourcepack:
-    description: GUI stuff
-    usage: /<command>
-    aliases: [rp]
