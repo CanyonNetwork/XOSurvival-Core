@@ -28,7 +28,7 @@ declined-resource-pack-message: "<gradient:#FF0000:#FF3DC5>You declined the reso
 ##            JOIN EVENT CONFIG          ###
 ########################################################
 
-resourcepack-chat-message: "<prefix><player> &7» &r<message>"
+resourcepack-chat-message: "%prefix%%player% &7» &r%message%"
 chat-message: "<prefix><player> &7» &r<message>"
 
 ########################################################

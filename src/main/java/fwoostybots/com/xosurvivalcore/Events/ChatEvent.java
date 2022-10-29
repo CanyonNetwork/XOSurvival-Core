@@ -44,18 +44,27 @@ public class ChatEvent implements Listener {
         Map<Integer, String> inheritedPrefixes = user.getCachedData().getMetaData(QueryOptions.nonContextual()).getPrefixes();
         String lowestPrefix =  inheritedPrefixes.entrySet().stream().filter(entry -> !(entry.getValue() == null)).sorted(Map.Entry.comparingByKey()).findFirst().get().getValue();
         for (Player e : Bukkit.getOnlinePlayers()) {
-            try {
+            //try {
                 boolean packstatus = resourcepackManager.getStatus(e.getUniqueId());
                 // Message sent if they have the resource pack enabled
                 if (packstatus) {
-                    e.sendMessage(ChatColor.translateAlternateColorCodes('&', resourcepack_chat_message.replaceAll("<player>", player.getName()).replaceAll("<prefix>", highestPrefix).replaceAll("<message>", PlainTextComponentSerializer.plainText().serialize(message))));
+                    resourcepack_chat_message = resourcepack_chat_message.replace("%", "%%");
+                    resourcepack_chat_message = resourcepack_chat_message.replace("%%prefix%%", highestPrefix);
+                    resourcepack_chat_message = resourcepack_chat_message.replace("%%player%%", player.getName());
+                    resourcepack_chat_message = resourcepack_chat_message.replace("%%message%%", PlainTextComponentSerializer.plainText().serialize(message));
+                    e.sendMessage(ChatColor.translateAlternateColorCodes('&', resourcepack_chat_message));
                     // Message sent if they don't have the resource pack enabled
                 } else {
-                    e.sendMessage(ChatColor.translateAlternateColorCodes('&', chat_message.replaceAll("<player>", player.getName()).replaceAll("<prefix>", lowestPrefix).replaceAll("<message>", PlainTextComponentSerializer.plainText().serialize(message))));
+                    chat_message = chat_message.replace("%", "%%");
+                    chat_message = chat_message.replace("%%prefix%%", lowestPrefix);
+                    chat_message = chat_message.replace("%%player%%", player.getName());
+                    chat_message = chat_message.replace("%%message%%", PlainTextComponentSerializer.plainText().serialize(message));
+                    e.sendMessage(ChatColor.translateAlternateColorCodes('&', resourcepack_chat_message));
+                    e.sendMessage(ChatColor.translateAlternateColorCodes('&', chat_message));
                 }
-            } catch (Exception exception) {
-                e.sendMessage(ChatColor.translateAlternateColorCodes('&', chat_message.replaceAll("<player>", player.getName()).replaceAll("<prefix>", lowestPrefix).replaceAll("<message>", PlainTextComponentSerializer.plainText().serialize(message))));
-            }
+            //} catch (Exception exception) {
+            //    e.sendMessage(ChatColor.translateAlternateColorCodes('&', chat_message.replaceAll("<player>", player.getName()).replaceAll("<prefix>", lowestPrefix).replaceAll("<message>", PlainTextComponentSerializer.plainText().serialize(message))));
+            //}
         }
     }
 }
