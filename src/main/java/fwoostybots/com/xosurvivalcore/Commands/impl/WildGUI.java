@@ -31,7 +31,7 @@ public class WildGUI extends Command {
 
         // Creating the GUI
         Gui gui = Gui.gui()
-                .title(Component.text("§6§lWild"))
+                .title(Component.text("§b§lWild"))
                 .rows(1)
                 .create();
 
@@ -41,7 +41,15 @@ public class WildGUI extends Command {
         });
 
         // GUI click event
-        GuiItem overworldItem = ItemBuilder.from(Material.MAP).asGuiItem(event -> {
+        GuiItem customworldItem = ItemBuilder.from(Material.FLOWERING_AZALEA_LEAVES).asGuiItem(event -> {
+            event.setCancelled(true);
+            Location loc = new Location(Bukkit.getWorld("world"), 30.5, 162, 0.5, -90, 0);
+            player.teleport(loc);
+            String warp_message = Main.getInstance().getConfig().getString("warp-message");
+            player.sendMessage(MiniMessage.miniMessage().deserialize(prefix_message + ' ' + warp_message, Placeholder.component("location", Component.text("the custom world"))));
+        });
+
+        GuiItem overworldItem = ItemBuilder.from(Material.GRASS_BLOCK).asGuiItem(event -> {
             event.setCancelled(true);
             Location loc = new Location(Bukkit.getWorld("world"), 30.5, 162, 0.5, -90, 0);
             player.teleport(loc);
@@ -54,19 +62,27 @@ public class WildGUI extends Command {
             // Something
         });
 
-        // Warping overworld item
-        overworldItem.getItemStack();
-        ItemStack item1 = overworldItem.getItemStack();
+        // Warping custom world item
+        customworldItem.getItemStack();
+        ItemStack item1 = customworldItem.getItemStack();
         ItemMeta meta1 = item1.getItemMeta();
-        meta1.displayName(Component.text("§dOverworld Warp"));
-        meta1.lore(List.of(Component.text("§eWarp to the overworld!")));
+        meta1.displayName(Component.text("§dCustom World"));
+        meta1.lore(List.of(Component.text("§eGo to the wilderness of the custom world!")));
 
         item1.setItemMeta(meta1);
 
-        gui.setItem(0, overworldItem);
-        gui.setItem(1, overworldItem);
-        gui.setItem(2, overworldItem);
-        gui.setItem(3, overworldItem);
+        gui.setItem(0, customworldItem);
+
+        // Warping custom world item
+        overworldItem.getItemStack();
+        ItemStack item2 = overworldItem.getItemStack();
+        ItemMeta meta2 = item2.getItemMeta();
+        meta2.displayName(Component.text("§aOverworld"));
+        meta2.lore(List.of(Component.text("§eGo to the wilderness of the overworld!")));
+
+        item2.setItemMeta(meta2);
+
+        gui.setItem(4, overworldItem);
 
         // Opening the completed GUI
         gui.open(player);

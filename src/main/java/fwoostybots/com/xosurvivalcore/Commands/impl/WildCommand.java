@@ -18,7 +18,7 @@ public class WildCommand extends Command {
 
 
     public WildCommand() {
-        super("wild", "Teleports you to the wild", List.of());
+        super("wildc", "Teleports you to the wild", List.of());
     }
 
     @Override
