@@ -29,7 +29,7 @@ declined-resource-pack-message: "<gradient:#FF0000:#FF3DC5>You declined the reso
 ########################################################
 
 resourcepack-chat-message: "%prefix%%player% &7» &r%message%"
-chat-message: "<prefix><player> &7» &r<message>"
+chat-message: "%prefix%%player% &7» &r%message%"
 
 ########################################################
 ##            WILD COMMAND CONFIG /WILD              ###
