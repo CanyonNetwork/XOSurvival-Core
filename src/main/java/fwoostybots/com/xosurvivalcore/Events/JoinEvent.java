@@ -93,34 +93,6 @@ public class JoinEvent implements Listener {
         }
     }
 
-    @EventHandler(priority = EventPriority.HIGHEST)
-    public void onLeave(PlayerJoinEvent event) {
-        Player player = event.getPlayer();
-        String leave_message = main.getConfig().getString("join-message");
-        String resourcepack_leave_message = main.getConfig().getString("resourcepack-leave-message");
-        User user = luckPerms.getUserManager().getUser(player.getUniqueId());
-        // Get the highest priority prefix
-        Map<Integer, String> inheritedPrefixes2 = user.getCachedData().getMetaData(QueryOptions.nonContextual()).getPrefixes();
-        String highestPrefix =  inheritedPrefixes2.entrySet().stream().filter(entry -> !(entry.getValue() == null)).sorted((o1, o2) -> -o1.getKey().compareTo(o2.getKey())).findFirst().get().getValue();
-        // Get the lowest priority prefix
-        Map<Integer, String> inheritedPrefixes = user.getCachedData().getMetaData(QueryOptions.nonContextual()).getPrefixes();
-        String lowestPrefix =  inheritedPrefixes.entrySet().stream().filter(entry -> !(entry.getValue() == null)).sorted(Map.Entry.comparingByKey()).findFirst().get().getValue();
-        for (Player e : Bukkit.getOnlinePlayers()) {
-            try {
-                boolean packstatus = resourcepackManager.getStatus(e.getUniqueId());
-                // Message sent if they have the resource pack enabled
-                if (packstatus) {
-                    e.sendMessage(ChatColor.translateAlternateColorCodes('&', resourcepack_leave_message.replaceAll("<player>", player.getName()).replaceAll("<prefix>", highestPrefix)));
-                    // Message sent if they don't have the resource pack enabled
-                } else {
-                    e.sendMessage(ChatColor.translateAlternateColorCodes('&', leave_message.replaceAll("<player>", player.getName()).replaceAll("<prefix>", lowestPrefix)));
-                }
-            } catch (Exception exception) {
-                e.sendMessage(ChatColor.translateAlternateColorCodes('&', leave_message.replaceAll("<player>", player.getName()).replaceAll("<prefix>", lowestPrefix)));
-            }
-        }
-    }
-
     // Resource Pack Status
     @EventHandler
     public void onResourcePackStatus(PlayerResourcePackStatusEvent event) {
