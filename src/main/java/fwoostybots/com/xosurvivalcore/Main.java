@@ -31,8 +31,8 @@ public final class Main extends JavaPlugin {
 
         getCommand("resourcepack").setExecutor(new ResourcePackCommand(this, resourcepackManager));
         getCommand("warp").setExecutor(new WarpCommand(this, resourcepackManager));
-        getCommand("wildgui").setExecutor(new WildGUI(this));
-        getCommand("wild").setExecutor(new WildCommand(this));
+        getCommand("wild").setExecutor(new WildGUI(this, resourcepackManager));
+        getCommand("wildc").setExecutor(new WildCommand(this));
 
         Teleport teleUtil = new Teleport(this);
 

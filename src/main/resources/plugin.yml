@@ -7,16 +7,16 @@ description: XOSurvival Core Plugin
 depend: [Vault]
 commands:
   god:
-    description: Become invunerable
+    description: Become invulnerable
     usage: /<command>
   warp:
-    description: Open a gui
+    description: Open the Warp GUI
     usage: /<command>
   wild:
-    description: Go to the wilderness
+    description: Open the Wild GUI
     usage: /<command>
-  wildgui:
-    description: GUI stuff
+  wildc:
+    description: Go to the wilderness
     usage: /<command>
   resourcepack:
     description: GUI stuff
