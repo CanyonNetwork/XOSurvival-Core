@@ -21,6 +21,7 @@ public final class Main extends JavaPlugin {
     @Override
     public void onEnable() {
         if (instance == null) instance = this;
+
         // Adds the ResourcePackManager manager to be public
         resourcePackManager = new ResourcePackManager();
         // Adds luckPerms to be public
@@ -31,6 +32,7 @@ public final class Main extends JavaPlugin {
 
         this.getServer().getPluginManager().registerEvents(new fwoostybots.com.xosurvivalcore.Events.JoinEvent(this, resourcePackManager, luckPerms), this);
         this.getServer().getPluginManager().registerEvents(new fwoostybots.com.xosurvivalcore.Events.ChatEvent(this, resourcePackManager, luckPerms), this);
+        this.getServer().getPluginManager().registerEvents(new fwoostybots.com.xosurvivalcore.Events.PlayerEvents(this), this);
         commandManager = new CommandManager();
         getLogger().info("XOSurvival-Core plugin has enabled."); // Delete the classes too
 

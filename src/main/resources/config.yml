@@ -45,7 +45,7 @@ border: 200
 cool-down-time: 10
 
 # Message displayed when player still in cool off period
-cool-down-message: "&7>> &fYou can use this &b/wild &fin &c{seconds-left} &fseconds"
+cool-down-message: "&7>> &fYou can use &b/wild &fin &c{seconds-left} &fseconds"
 
 # Message displayed when a player is in the nether or end world
 incorrect-world-message: "&7>> &fYou cannot use &b/wild &fin this world"
