@@ -29,13 +29,13 @@ public class PlayerEvents implements Listener{
                 e.setCancelled(true);
                 Location loc = new Location(Bukkit.getWorld("spawn"), 0.5, 100, 55.5, 0, 0);
                 player.teleport(loc);
-                // wait 1 second
+                // wait 1 tick (you can't open a GUI in the portal, so this is needed)
                 new BukkitRunnable() {
                     @Override
                     public void run() {
                         player.performCommand("wild");
                     }
-                }.runTaskLater(this.main, 5L);
+                }.runTaskLater(this.main, 1L);
             }
         }
     }
