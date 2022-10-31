@@ -11,12 +11,6 @@ import java.util.Random;
 
 public class Teleport {
 
-    private static Main main;
-
-    public Teleport(Main main) {
-        this.main = main;
-    }
-
     // List of unsafe blocks
     public static HashSet<Material> badBlocks = new HashSet<>();
 
@@ -35,9 +29,9 @@ public class Teleport {
         int z = 0;
         int y = 0;
 
-        if(main.getConfig().getBoolean("world-border")) {
-            x = random.nextInt(main.getConfig().getInt("border"));
-            z = random.nextInt(main.getConfig().getInt("border"));
+        if(Main.getInstance().getConfig().getBoolean("world-border")) {
+            x = random.nextInt(Main.getInstance().getConfig().getInt("border"));
+            z = random.nextInt(Main.getInstance().getConfig().getInt("border"));
             y = 150;
         }
         else {
