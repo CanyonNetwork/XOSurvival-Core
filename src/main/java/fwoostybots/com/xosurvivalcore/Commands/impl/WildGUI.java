@@ -5,24 +5,27 @@ import dev.triumphteam.gui.guis.Gui;
 import dev.triumphteam.gui.guis.GuiItem;
 import fwoostybots.com.xosurvivalcore.Commands.Command;
 import fwoostybots.com.xosurvivalcore.Main;
+import fwoostybots.com.xosurvivalcore.Utilities.Teleport;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
-import org.bukkit.Bukkit;
-import org.bukkit.Location;
-import org.bukkit.Material;
+import org.bukkit.*;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.UUID;
 
 public class WildGUI extends Command {
 
     public WildGUI() {
         super("wild", "Opens the Wild GUI", List.of("warpmesomewhere"));
     }
+
+    private HashMap<UUID, Long> cooldown = new HashMap<UUID, Long>();
 
     @Override
     public void runPlayer(@NotNull Player player, String[] args) {
@@ -43,10 +46,25 @@ public class WildGUI extends Command {
         // GUI click event
         GuiItem customworldItem = ItemBuilder.from(Material.FLOWERING_AZALEA_LEAVES).asGuiItem(event -> {
             event.setCancelled(true);
-            Location loc = new Location(Bukkit.getWorld("world"), 30.5, 162, 0.5, -90, 0);
-            player.teleport(loc);
-            String warp_message = Main.getInstance().getConfig().getString("warp-message");
-            player.sendMessage(MiniMessage.miniMessage().deserialize(prefix_message + ' ' + warp_message, Placeholder.component("location", Component.text("the custom world"))));
+            int cooldownTime = Main.getInstance().getConfig().getInt("cool-down-time");
+            World world = Bukkit.getWorld("world");
+            if(cooldown.containsKey(player.getUniqueId())) {
+                long secondsLeft = ((cooldown.get(player.getUniqueId())/1000) + cooldownTime) - (System.currentTimeMillis() / 1000);
+                String cool_down_message = Main.getInstance().getConfig().getString("cool-down-message").replace("{seconds-left}", String.valueOf(secondsLeft));
+                if(secondsLeft > 0) {
+                    player.sendMessage(ChatColor.translateAlternateColorCodes('&', cool_down_message));
+                    return;
+                }
+                else if (secondsLeft <= 0) {
+                    cooldown.remove(player.getUniqueId());
+                    teleport(args, player, world);
+                    return;
+                }
+            }
+            else {
+                teleport(args, player, world);
+                return;
+            }
         });
 
         GuiItem overworldItem = ItemBuilder.from(Material.GRASS_BLOCK).asGuiItem(event -> {
@@ -86,5 +104,37 @@ public class WildGUI extends Command {
 
         // Opening the completed GUI
         gui.open(player);
+    }
+    private void teleport(String[] args, Player player, World world) {
+        // Add cool-down to player
+        cooldown.put(player.getUniqueId(), System.currentTimeMillis());
+
+        // Check if the correct arguments are supplied
+        if(args.length == 0) {
+            if(player.getLocation().getWorld().getName().equalsIgnoreCase("world_nether")
+                    || player.getLocation().getWorld().getName().equalsIgnoreCase("world_the_end")) {
+
+                String incorrectWorldMessage = Main.getInstance().getConfig().getString("incorrect-world-message");
+
+                player.sendMessage(ChatColor.translateAlternateColorCodes('&', incorrectWorldMessage));
+                return;
+            }
+            else {
+                // Determine a safe location
+                Location randomLocation = Teleport.findSafeLocation(player, world);
+
+                // Teleport the player
+                player.teleport(randomLocation);
+
+                // Notify the player
+                String random_location = Main.getInstance().getConfig().getString("random-location");
+                player.sendMessage(ChatColor.translateAlternateColorCodes('&', random_location));
+                return;
+            }
+        }
+        else {
+            player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&cIncorrect usage, /wild"));
+            return;
+        }
     }
 }

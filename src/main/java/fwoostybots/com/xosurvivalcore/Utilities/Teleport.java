@@ -3,6 +3,7 @@ package fwoostybots.com.xosurvivalcore.Utilities;
 import fwoostybots.com.xosurvivalcore.Main;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 
@@ -21,7 +22,7 @@ public class Teleport {
         badBlocks.add(Material.WATER);
     }
 
-    public static Location generateLocation(Player player) {
+    public static Location generateLocation(Player player, World world) {
         // Generate random location
         Random random = new Random();
 
@@ -40,17 +41,17 @@ public class Teleport {
             y = 150;
         }
 
-        Location randomLocation = new Location(player.getWorld(), x, y, z).toCenterLocation().toHighestLocation().add(0, 1, 0);
+        Location randomLocation = new Location(world, x, y, z).toCenterLocation().toHighestLocation().add(0, 1, 0);
 
         return randomLocation;
     }
 
-    public static Location findSafeLocation(Player player) {
-        Location randomLocation = generateLocation(player);
+    public static Location findSafeLocation(Player player, World world) {
+        Location randomLocation = generateLocation(player, world);
 
         while(!isLocationSafe(randomLocation)) {
             // Keep looking for a safe location
-            randomLocation = generateLocation(player);
+            randomLocation = generateLocation(player, world);
         }
 
         return randomLocation;

@@ -5,6 +5,7 @@ import fwoostybots.com.xosurvivalcore.Main;
 import fwoostybots.com.xosurvivalcore.Utilities.Teleport;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
+import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
@@ -37,18 +38,18 @@ public class WildCommand extends Command {
             // Remove from hashmap, teleport player
             else if (secondsLeft <= 0) {
                 cooldown.remove(player.getUniqueId());
-                teleport(args, player);
+                teleport(args, player, player.getWorld());
                 return;
             }
         }
         else {
             // First time command usage, teleport player
-            teleport(args, player);
+            teleport(args, player, player.getWorld());
             return;
         }
     }
 
-    private void teleport(String[] args, Player player) {
+    private void teleport(String[] args, Player player, World world) {
         // Add cool-down to player
         cooldown.put(player.getUniqueId(), System.currentTimeMillis());
 
@@ -64,7 +65,7 @@ public class WildCommand extends Command {
             }
             else {
                 // Determine a safe location
-                Location randomLocation = Teleport.findSafeLocation(player);
+                Location randomLocation = Teleport.findSafeLocation(player, world);
 
                 // Teleport the player
                 player.teleport(randomLocation);
