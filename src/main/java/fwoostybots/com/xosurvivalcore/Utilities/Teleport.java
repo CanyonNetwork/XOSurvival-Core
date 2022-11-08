@@ -49,7 +49,7 @@ public class Teleport {
     public static Location findSafeLocation(Player player, World world) {
         Location randomLocation = generateLocation(player, world);
 
-        while(!isLocationSafe(randomLocation)) {
+        while (!isLocationSafe(randomLocation)) {
             // Keep looking for a safe location
             randomLocation = generateLocation(player, world);
         }
