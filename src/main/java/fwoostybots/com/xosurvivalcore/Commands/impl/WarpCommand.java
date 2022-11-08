@@ -3,7 +3,7 @@ package fwoostybots.com.xosurvivalcore.Commands.impl;
 import dev.triumphteam.gui.builder.item.ItemBuilder;
 import dev.triumphteam.gui.guis.Gui;
 import dev.triumphteam.gui.guis.GuiItem;
-import fwoostybots.com.xosurvivalcore.Commands.Command; // Make sure you use this one
+import fwoostybots.com.xosurvivalcore.Commands.Command;
 import fwoostybots.com.xosurvivalcore.Main;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.MiniMessage;

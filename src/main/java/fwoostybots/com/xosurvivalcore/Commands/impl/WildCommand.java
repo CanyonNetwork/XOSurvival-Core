@@ -26,12 +26,12 @@ public class WildCommand extends Command {
     public void runPlayer(@NotNull Player player, String[] args) {
         int cooldownTime = Main.getInstance().getConfig().getInt("cool-down-time");
         // Check if player is in HashMap
-        if(cooldown.containsKey(player.getUniqueId())) {
+        if (cooldown.containsKey(player.getUniqueId())) {
             long secondsLeft = ((cooldown.get(player.getUniqueId())/1000) + cooldownTime) - (System.currentTimeMillis() / 1000);
             String cool_down_message = Main.getInstance().getConfig().getString("cool-down-message").replace("{seconds-left}", String.valueOf(secondsLeft));
 
             // Check if player is in cooling-off period
-            if(secondsLeft > 0) {
+            if (secondsLeft > 0) {
                 player.sendMessage(ChatColor.translateAlternateColorCodes('&', cool_down_message));
                 return;
             }
@@ -54,8 +54,8 @@ public class WildCommand extends Command {
         cooldown.put(player.getUniqueId(), System.currentTimeMillis());
 
         // Check if the correct arguments are supplied
-        if(args.length == 0) {
-            if(player.getLocation().getWorld().getName().equalsIgnoreCase("world_nether")
+        if (args.length == 0) {
+            if (player.getLocation().getWorld().getName().equalsIgnoreCase("world_nether")
                     || player.getLocation().getWorld().getName().equalsIgnoreCase("world_the_end")) {
 
                 String incorrectWorldMessage = Main.getInstance().getConfig().getString("incorrect-world-message");

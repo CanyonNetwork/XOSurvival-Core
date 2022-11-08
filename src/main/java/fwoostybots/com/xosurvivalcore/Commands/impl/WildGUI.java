@@ -48,10 +48,10 @@ public class WildGUI extends Command {
             event.setCancelled(true);
             int cooldownTime = Main.getInstance().getConfig().getInt("cool-down-time");
             World world = Bukkit.getWorld("world");
-            if(cooldown.containsKey(player.getUniqueId())) {
+            if (cooldown.containsKey(player.getUniqueId())) {
                 long secondsLeft = ((cooldown.get(player.getUniqueId())/1000) + cooldownTime) - (System.currentTimeMillis() / 1000);
                 String cool_down_message = Main.getInstance().getConfig().getString("cool-down-message").replace("{seconds-left}", String.valueOf(secondsLeft));
-                if(secondsLeft > 0) {
+                if (secondsLeft > 0) {
                     player.sendMessage(ChatColor.translateAlternateColorCodes('&', cool_down_message));
                     return;
                 }
@@ -110,8 +110,8 @@ public class WildGUI extends Command {
         cooldown.put(player.getUniqueId(), System.currentTimeMillis());
 
         // Check if the correct arguments are supplied
-        if(args.length == 0) {
-            if(player.getLocation().getWorld().getName().equalsIgnoreCase("world_nether")
+        if (args.length == 0) {
+            if (player.getLocation().getWorld().getName().equalsIgnoreCase("world_nether")
                     || player.getLocation().getWorld().getName().equalsIgnoreCase("world_the_end")) {
 
                 String incorrectWorldMessage = Main.getInstance().getConfig().getString("incorrect-world-message");
