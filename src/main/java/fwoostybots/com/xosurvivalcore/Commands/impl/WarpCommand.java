@@ -21,7 +21,7 @@ import java.util.List;
 public class WarpCommand extends Command {
 
     public WarpCommand() {
-        super("warp", "Warps you to somewhere i dont really know", List.of("warpmesomewhere"));
+        super("warp", "Warps you to somewhere i dont really know", List.of("warp"));
     }
 
     @Override
