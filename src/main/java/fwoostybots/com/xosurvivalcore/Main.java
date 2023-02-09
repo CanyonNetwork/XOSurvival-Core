@@ -2,7 +2,6 @@ package fwoostybots.com.xosurvivalcore;
 
 import fwoostybots.com.xosurvivalcore.Commands.*;
 import fwoostybots.com.xosurvivalcore.Managers.ResourcePackManager;
-import fwoostybots.com.xosurvivalcore.Utilities.*;
 import net.luckperms.api.LuckPerms;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
