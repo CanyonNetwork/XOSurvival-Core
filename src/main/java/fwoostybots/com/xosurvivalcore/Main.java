@@ -19,7 +19,7 @@ public final class Main extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        // Adds "this" for "this.main" to work.
+        // Adds "this" for "this.main" to work
         if (instance == null) instance = this;
         // Adds the ResourcePackManager manager to be public
         resourcePackManager = new ResourcePackManager();
